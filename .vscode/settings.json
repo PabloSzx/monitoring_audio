@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.pfc": "pascal",
+        "iostream": "cpp"
+    }
+}
