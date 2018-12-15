@@ -9,5 +9,7 @@ int main() {
   a->Record(3);
 
   a->PlayBuffer();
+
+  free(a);
   return 0;
 }
