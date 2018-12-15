@@ -1,6 +1,10 @@
+SRC=src/main.cpp src/components/audio/audio.cpp
+
 all:
-	g++ -std=c++14 src/main.cpp -O2 -o bin/prog -lportaudio
+	g++ -std=c++14 ${SRC} -O2 -o bin/prog -lportaudio
 build:
 	cd portaudio/portaudio && ./configure && sudo make install
 run:
 	./bin/prog
+make:
+	make && make run
