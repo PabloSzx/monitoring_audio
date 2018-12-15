@@ -2,22 +2,13 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 
-Audio::Audio() {
-  if (sf::SoundRecorder::isAvailable() == false) {
-    std::cout << "Sorry, audio capture is not supported by your system"
-              << std::endl;
-    return;
-  }
-
-  std::cout << "Press enter to start recording audio";
-  std::cin.ignore(10000, '\n');
-
+void Audio::Record(unsigned int n) {
   recorder.start(sampleRate);
+  buffer = recorder.getBuffer();
   std::cout << "Recording... press enter to stop";
   std::cin.ignore(10000, '\n');
+  std::cout << std::endl;
   recorder.stop();
-
-  buffer = recorder.getBuffer();
 
   std::cout << "Sound information:" << std::endl;
   std::cout << " " << buffer.getDuration().asSeconds() << " seconds"
@@ -27,6 +18,7 @@ Audio::Audio() {
   std::cout << " " << buffer.getChannelCount() << " channels" << std::endl;
 
   sound.setBuffer(buffer);
+
   sound.play();
 
   // Wait until finished
@@ -45,6 +37,14 @@ Audio::Audio() {
     std::cout << "Press enter to exit..." << std::endl;
     std::cin.ignore(10000, '\n');
 
+    return;
+  }
+}
+void Audio::PlayBuffer() {}
+Audio::Audio() {
+  if (sf::SoundRecorder::isAvailable() == false) {
+    std::cout << "Sorry, audio capture is not supported by your system"
+              << std::endl;
     return;
   }
 }

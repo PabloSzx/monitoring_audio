@@ -5,6 +5,8 @@
 class Audio {
 public:
   Audio();
+  void Record(unsigned int n = 0);
+  void PlayBuffer();
 
 private:
   unsigned int sampleRate = 44100;
