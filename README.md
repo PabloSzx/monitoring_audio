@@ -2,8 +2,8 @@
 
 ## sudo pacman -S asio
 
-### make
+### make make_server
 
-### make run
+### make make_client
 
 ### [Boost Asio](https://www.boost.org/doc/libs/1_69_0/doc/html/boost_asio/tutorial.html)
