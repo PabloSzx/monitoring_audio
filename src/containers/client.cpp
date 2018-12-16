@@ -11,5 +11,6 @@ int main() {
 
   auto connection = new udp_client();
 
+  connection->run();
   return 0;
 }

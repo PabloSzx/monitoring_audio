@@ -8,9 +8,8 @@
 #include <string>
 
 using boost::asio::ip::udp;
-
+using namespace std; // For time_t, time and ctime;
 std::string make_daytime_string() {
-  using namespace std; // For time_t, time and ctime;
   time_t now = time(0);
   return ctime(&now);
 }
@@ -45,7 +44,18 @@ void udp_server::handle_receive(const boost::system::error_code &error,
 
 void udp_server::handle_send(boost::shared_ptr<std::string> /*message*/,
                              const boost::system::error_code & /*error*/,
-                             std::size_t /*bytes_transferred*/) {}
+                             std::size_t /*bytes_transferred*/) {
+  boost::shared_ptr<std::string> message(
+      new std::string(make_daytime_string()));
+
+  socket_.async_send_to(
+      boost::asio::buffer(*message), remote_endpoint_,
+      boost::bind(&udp_server::handle_send, this, message,
+                  boost::asio::placeholders::error,
+                  boost::asio::placeholders::bytes_transferred));
+
+  cout << "Enviado!" << endl;
+}
 
 void udp_server::run() {
   try {
