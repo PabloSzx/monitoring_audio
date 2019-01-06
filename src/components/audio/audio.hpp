@@ -7,6 +7,7 @@ public:
   Audio();
   void Record(unsigned int n = 0);
   void PlayBuffer();
+  void SelectDevice();
 
 private:
   unsigned int sampleRate = 44100;

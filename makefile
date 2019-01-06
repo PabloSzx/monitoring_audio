@@ -1,5 +1,5 @@
-SRC_SERVER=src/containers/server.cpp src/components/audio/audio.cpp src/components/network/server/udp.cpp
-SRC_CLIENT=src/containers/client.cpp src/components/audio/audio.cpp src/components/network/client/udp.cpp
+SRC_SERVER=src/containers/server.cpp src/components/audio/audio.cpp src/components/streamer/streamer.cpp #src/components/network/server/udp.cpp 
+SRC_CLIENT=src/containers/client.cpp src/components/audio/audio.cpp #src/components/network/client/udp.cpp
 LIBRARIES=-lboost_system -lpthread -lboost_thread -lsfml-audio -lsfml-system
 server:
 	g++ -std=c++17 ${SRC_SERVER} -O2 -o bin/server.o ${LIBRARIES}

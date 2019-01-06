@@ -2,6 +2,8 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 
+using namespace std;
+
 void Audio::Record(unsigned int n) {
   std::cout << "Press enter to start recording audio";
   std::cin.ignore(10000, '\n');
@@ -31,6 +33,25 @@ void Audio::Record(unsigned int n) {
             << std::endl;
   std::cout << " " << buffer.getChannelCount() << " channels" << std::endl;
   sound.setBuffer(buffer);
+}
+void Audio::SelectDevice() {
+  auto devices = recorder.getAvailableDevices();
+
+  cout << "Choose a device:" << endl;
+
+  auto cont = 0;
+  int n;
+  for (auto i : devices) {
+    cout << cont << " : " << i << endl;
+    cont++;
+  }
+
+  cout << "Put your chosen number: ";
+  cin >> n;
+  cout << endl;
+  cin.ignore();
+
+  recorder.setDevice(devices[n]);
 }
 void Audio::PlayBuffer() {
 
